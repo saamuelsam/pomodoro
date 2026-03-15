@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FocoPomodoro | Estude com ritmo</title>
+  <meta
+    name="description"
+    content="Timer Pomodoro, cronometro, metas de estudo e artigos em um site responsivo feito para manter o foco."
+  >
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;700&family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <nav class="topbar">
+        <div class="brand">
+          <span class="brand-mark">FP</span>
+          <div>
+            <strong>FocoPomodoro</strong>
+            <p>Seu ritmo de estudo, sua rotina, seu progresso.</p>
+          </div>
+        </div>
+        <div class="nav-links">
+          <a href="articles.html">Artigos</a>
+          <a href="about.html">Sobre</a>
+          <a href="privacy.html">Privacidade</a>
+          <a class="nav-cta" href="#timer-app">Comecar agora</a>
+        </div>
+      </nav>
+
+      <section class="hero-content">
+        <div class="hero-copy">
+          <span class="eyebrow">Planeje, foque e revise melhor</span>
+          <h1>Um site Pomodoro feito para quem quer estudar com constancia.</h1>
+          <p>
+            Alterne ciclos de foco e pausa, acompanhe o tempo total de estudo,
+            escute alertas sonoros de cada minuto e use uma interface pensada
+            para estudo rapido, simples e sem distracoes.
+          </p>
+          <div class="hero-actions">
+            <a class="primary-button" href="#timer-app">Abrir timer</a>
+            <a class="secondary-button" href="#study-tools">Ver recursos</a>
+          </div>
+          <ul class="hero-points">
+            <li>Pomodoro configuravel</li>
+            <li>Cronometro com voltas</li>
+            <li>Alerta sonoro e sinal por minuto</li>
+          </ul>
+        </div>
+
+        <aside class="hero-highlight">
+          <span class="section-tag">Acesso rapido</span>
+          <strong>Abra o timer e comece em segundos</strong>
+          <p>Escolha o modo, ajuste os minutos e acompanhe sua sessao de estudo com visual claro e direto.</p>
+          <a class="primary-button" href="#timer-app">Ir para o Pomodoro</a>
+        </aside>
+      </section>
+    </header>
+
+    <main>
+      <section class="app-grid" id="timer-app">
+        <article class="timer-card">
+          <div class="card-header">
+            <div>
+              <span class="section-tag">Timer principal</span>
+              <h2>Pomodoro inteligente</h2>
+            </div>
+            <span class="status-pill" id="timer-status">Pronto para comecar</span>
+          </div>
+
+          <div class="timer-layout">
+            <div class="timer-primary-panel">
+              <div class="mode-tabs" role="tablist" aria-label="Modos do timer">
+                <button class="mode-tab is-active" data-mode="focus">Foco</button>
+                <button class="mode-tab" data-mode="shortBreak">Pausa curta</button>
+                <button class="mode-tab" data-mode="longBreak">Pausa longa</button>
+              </div>
+
+              <div class="timer-face">
+                <div class="timer-ring">
+                  <svg viewBox="0 0 120 120" class="progress-svg" aria-hidden="true">
+                    <circle cx="60" cy="60" r="52" class="progress-track"></circle>
+                    <circle cx="60" cy="60" r="52" class="progress-value" id="progress-ring"></circle>
+                  </svg>
+                  <div class="timer-readout">
+                    <span id="timer-label">Tempo restante</span>
+                    <strong id="timer-display">25:00</strong>
+                    <small id="cycle-display">Ciclo 1 de 4</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="controls">
+                <button class="primary-button" id="start-pomodoro">Iniciar</button>
+                <button class="secondary-button" id="pause-pomodoro">Pausar</button>
+                <button class="ghost-button" id="reset-pomodoro">Reiniciar</button>
+              </div>
+
+              <div class="mini-stats" aria-label="Resumo rapido do estudo">
+                <article>
+                  <span>Sessoes</span>
+                  <strong id="completed-sessions">0</strong>
+                </article>
+                <article>
+                  <span>Hoje</span>
+                  <strong id="focus-minutes">0 min</strong>
+                </article>
+                <article>
+                  <span>Modo</span>
+                  <strong id="current-mode-label">Foco</strong>
+                </article>
+              </div>
+            </div>
+
+            <div class="timer-settings-panel">
+              <div class="settings-heading">
+                <span class="section-tag">Ajustes rapidos</span>
+                <p>Configure duracao e alertas sem sair do painel principal.</p>
+              </div>
+              <form class="settings-grid compact-settings" id="settings-form">
+                <label>
+                  Foco
+                  <input type="number" id="focus-duration" min="1" max="90" value="25">
+                </label>
+                <label>
+                  Pausa curta
+                  <input type="number" id="short-break-duration" min="1" max="30" value="5">
+                </label>
+                <label>
+                  Pausa longa
+                  <input type="number" id="long-break-duration" min="1" max="60" value="15">
+                </label>
+                <label>
+                  Ciclos ate pausa longa
+                  <input type="number" id="cycles-before-long-break" min="2" max="8" value="4">
+                </label>
+                <label class="toggle-field">
+                  Som a cada minuto
+                  <input type="checkbox" id="minute-chime" checked>
+                </label>
+                <label class="toggle-field">
+                  Som ao trocar de fase
+                  <input type="checkbox" id="phase-alert" checked>
+                </label>
+              </form>
+            </div>
+          </div>
+        </article>
+
+        <aside class="sidebar-stack">
+          <article class="stopwatch-card">
+            <div class="card-header">
+              <div>
+                <span class="section-tag">Ferramenta extra</span>
+                <h2>Cronometro de estudo</h2>
+              </div>
+            </div>
+            <strong class="stopwatch-display" id="stopwatch-display">00:00:00</strong>
+            <div class="controls compact">
+              <button class="primary-button" id="start-stopwatch">Iniciar</button>
+              <button class="secondary-button" id="lap-stopwatch">Volta</button>
+              <button class="ghost-button" id="reset-stopwatch">Zerar</button>
+            </div>
+            <ul class="lap-list" id="lap-list" aria-label="Voltas registradas"></ul>
+          </article>
+
+          <article class="support-card">
+            <span class="section-tag">Uso rapido</span>
+            <strong>Comece sem cadastro</strong>
+            <p>Abra a pagina, ajuste a duracao do foco e inicie seu ciclo de estudos imediatamente.</p>
+          </article>
+        </aside>
+      </section>
+
+      <section class="study-tools compact-tools" id="study-tools">
+        <article>
+          <span class="section-tag">Produtividade</span>
+          <h3>Rotina visual de estudo</h3>
+          <p>Interface clara com indicador de fase atual, progresso circular e status do ciclo.</p>
+        </article>
+        <article>
+          <span class="section-tag">Concentracao</span>
+          <h3>Sinais sonoros suaves</h3>
+          <p>Toque curto a cada minuto e alerta especial ao fim de cada etapa para nao perder o ritmo.</p>
+        </article>
+        <article>
+          <span class="section-tag">Receita</span>
+          <h3>Interface simples e limpa</h3>
+          <p>O layout prioriza foco, rapidez e leitura clara em qualquer dispositivo.</p>
+        </article>
+      </section>
+
+      <section class="articles-section" id="articles">
+        <div class="section-heading">
+          <div>
+            <span class="section-tag">Conteudo</span>
+            <h2>Alguns artigos para estudar melhor</h2>
+          </div>
+          <p>
+            Uma amostra de conteudos sobre foco, revisao e organizacao.
+            Para ver a lista completa, acesse a pagina de artigos.
+          </p>
+        </div>
+
+        <div class="articles-grid">
+          <article class="article-card">
+            <span class="article-kicker">Artigo 01</span>
+            <h3>Como usar a tecnica Pomodoro para estudar com mais consistencia</h3>
+            <p>Entenda como dividir blocos de foco e pausas pode reduzir cansaco mental e melhorar sua disciplina diaria.</p>
+          </article>
+          <article class="article-card">
+            <span class="article-kicker">Artigo 02</span>
+            <h3>Melhores horarios para estudar de acordo com sua rotina</h3>
+            <p>Veja como identificar periodos de maior energia e montar uma agenda de estudo mais realista e sustentavel.</p>
+          </article>
+          <article class="article-card">
+            <span class="article-kicker">Artigo 03</span>
+            <h3>Como montar um plano de estudos semanal sem sobrecarga</h3>
+            <p>Aprenda a distribuir materias e metas com espaco para revisoes, descansos e ajustes ao longo da semana.</p>
+          </article>
+          <article class="article-card">
+            <span class="article-kicker">Artigo 04</span>
+            <h3>Cronometro de estudo: quando usar contagem livre em vez de Pomodoro</h3>
+            <p>Descubra em quais tarefas vale mais usar cronometro corrido do que ciclos fechados com pausas definidas.</p>
+          </article>
+          <article class="article-card">
+            <span class="article-kicker">Artigo 05</span>
+            <h3>Como fazer revisao ativa para lembrar mais em menos tempo</h3>
+            <p>Conheca tecnicas praticas para revisar conteudo com perguntas, resumos curtos e recuperacao da memoria.</p>
+          </article>
+        </div>
+        <div class="articles-cta">
+          <a class="secondary-button" href="articles.html">Ver todos os artigos</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p>(c) 2026 FocoPomodoro. Pomodoro, cronometro de estudo e conteudo para estudantes.</p>
+        <p>Contato: contato@focopomodoro.com | Comercial: ads@focopomodoro.com | Atendimento: segunda a sexta, das 9h as 18h</p>
+      </div>
+      <div class="footer-links">
+        <a href="about.html">Sobre</a>
+        <a href="privacy.html">Politica de privacidade</a>
+        <a href="articles.html">Artigos</a>
+      </div>
+    </footer>
+  </div>
+
+  <script src="ui-sounds.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
